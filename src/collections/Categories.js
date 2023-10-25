@@ -1,3 +1,5 @@
+import Todo from './Todo'
+
 /** @type {import('payload/types').CollectionConfig} */
 const Categories = {
   slug : "Categories",
@@ -7,6 +9,13 @@ const Categories = {
       type: "text",
       required: true,
     },
+    Todo,
+    {
+      name: "title",
+      type: "text",
+      required: true,
+    },
+    
   ]
 }
 
