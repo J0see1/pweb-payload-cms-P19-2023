@@ -1,22 +1,23 @@
-import Todo from './Todo'
-
 /** @type {import('payload/types').CollectionConfig} */
 const Categories = {
-  slug : "Categories",
-  fields : [
+  slug: "Categories",
+  admin: {
+    useAsTitle : 'name'
+  },
+  access: {
+    create: () => true,
+    read: () => true,
+    update: () => true,
+    delete: () => true,
+  },
+  fields: [
     {
       name: "Category",
       type: "text",
       required: true,
+      unique: true,
     },
-    Todo,
-    {
-      name: "title",
-      type: "text",
-      required: true,
-    },
-    
-  ]
-}
+  ],
+};
 
-export default Categories
+export default Categories;

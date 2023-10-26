@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { payloadCloud } from '@payloadcms/plugin-cloud';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { webpackBundler } from '@payloadcms/bundler-webpack';
@@ -15,23 +16,8 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [
-    Users,
-    Categories,
-    {
-      ...Todo,
-      fields: [
-        ...Todo.fields,
-        {
-          name: 'category',
-          label: 'Category',
-          type: 'relationship',
-          relationTo: 'Categories',
-          Input: CategoryField,
-        },
-      ],
-    },
-  ],
+  collections: [Users, Todo, Categories],
+
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
