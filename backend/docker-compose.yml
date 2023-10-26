@@ -3,8 +3,9 @@ version: '3'
 services:
   payload:
     image: node:18-alpine
+    restart: always
     ports:
-      - '3000:3000'
+      - '3100:3100'
     volumes:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules

@@ -1,5 +1,5 @@
 {
-  "name": "pweb-payload-cms-p19-2023",
+  "name": "modul-3",
   "description": "A blank template to get started with Payload",
   "version": "1.0.0",
   "main": "dist/server.js",
@@ -23,7 +23,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "payload": "^2.0.0"
+    "payload": "^2.0.13"
   },
   "devDependencies": {
     "@types/express": "^4.17.9",

@@ -1,24 +1,23 @@
-const payload = require('payload')
-// import payload from 'payload';
+import payload from 'payload';
 
 /** @type {import('payload/types').CollectionConfig} */
-const Todo = {
-    slug: 'Todo',
-    admin : {
-      useAsTitle : 'name'
-    },
-    access: {
-      read: () => true,
-      update: () => true,
-      delete: () => true,
-      create: () => true,
-    },
+const Category = {
+  slug: 'Category',
+  admin: {
+    useAsTitle: 'name'
+  },
+  access: {
+    read: () => true,
+    update: () => true,
+    delete: () => true,
+    create: () => true,
+  },
 
   hooks: {
     afterOperation: [
       async (args) => {
+        console.dir(args.operation);
         if (args.operation === "create") {
-          console.log('Operation:', args.operation);
           await payload.create({
             collection: "Logs",
             data: {
@@ -28,8 +27,7 @@ const Todo = {
               action: "Todo Created",
             },
           });
-        } else if (args.operation === "deleteByID") {
-          console.log('Operation:', args.operation);
+        } else if (args.operation === "delete") {
           await payload.create({
             collection: "Logs",
             data: {
@@ -39,8 +37,7 @@ const Todo = {
               action: "Todo Created",
             },
           });
-        } else if (args.operation === "updateByID") {
-          console.log('Operation:', args.operation);
+        } else if (args.operation === "update") {
           await payload.create({
             collection: "Logs",
             data: {
@@ -55,21 +52,14 @@ const Todo = {
     ],
   },
 
-    fields: [
-      {
-        name: 'name',
-        label: 'Title',
-        type: 'text',
-        required: true,
-      },
-      {
-        name: 'Category',
-        type: 'relationship',
-        required: true,
-        relationTo: 'Category',
-      },
-    ],
-  };
-  
-  export default Todo;
-  
+  fields: [
+    {
+      name: 'name',
+      label: 'Title',
+      type: 'text',
+      required: true,
+    },
+  ],
+};
+
+export default Category;
