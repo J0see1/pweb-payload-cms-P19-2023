@@ -1,23 +1,25 @@
+
 /** @type {import('payload/types').CollectionConfig} */
-const Categories = {
-  slug: "Categories",
-  admin: {
+const Category = {
+  slug: 'Category', // Anda perlu menambahkan slug yang sesuai
+  admin : {
     useAsTitle : 'name'
   },
   access: {
-    create: () => true,
     read: () => true,
     update: () => true,
     delete: () => true,
+    create: () => true,
   },
+
   fields: [
     {
-      name: "Category",
-      type: "text",
+      name: 'name',
+      label: 'Name',
+      type: 'text',
       required: true,
-      unique: true,
     },
   ],
 };
 
-export default Categories;
+export default Category;

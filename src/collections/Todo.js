@@ -1,37 +1,34 @@
+
+// const payload = require('payload')
+
+import payload from 'payload';
+
 /** @type {import('payload/types').CollectionConfig} */
 const Todo = {
-  slug: "todo",
-  admin: {
-    useAsTitle : 'name'
-  },
-  access: {
-    create: () => true,
-    read: () => true,
-    update: () => true,
-    delete: () => true,
-  },
-  fields: [
-    {
-      name: "title",
-      type: "text",
-      required: true,
+    slug: 'Todo',
+    admin : {
+      useAsTitle : 'name'
     },
-    {
-      name: "category",
-      type: "relationship",
-      relationTo: "Categories", 
-      label: "Category",
-      required: true,
-      localized: false,
+    access: {
+      read: () => true,
+      update: () => true,
+      delete: () => true,
+      create: () => true,
     },
-    {
-      name: "status",
-      label: "ToDo Status",
-      type: "select",
-      options: ["Assigned", "On Progress", "Done"],
-      required: true,
-    },
-  ],
-};
-
-export default Todo;
+    fields: [
+      {
+        name: 'name',
+        label: 'Title',
+        type: 'text',
+        required: true,
+      },
+      {
+        name: 'Category',
+        type: 'relationship',
+        required: true,
+        relationTo: 'Category',
+      },
+    ],
+  };
+  
+  export default Todo;
