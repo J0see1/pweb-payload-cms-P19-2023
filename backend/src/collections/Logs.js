@@ -8,7 +8,7 @@ const Logs = {
       read: () => true,
       update: () => true,
       delete: () => true,
-      create: () => true,
+      create: () => false,
     },
   
     fields: [

@@ -24,6 +24,5 @@ export default {
 <style scoped>
 .not-found {
   text-align: center;
-  margin-top: 100px;
 }
 </style>
