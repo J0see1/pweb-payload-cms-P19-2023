@@ -36,7 +36,7 @@ const Todo = {
               name: args.result.name,
               log: args.result.id,
               timestamp: new Date(),
-              action: "Todo Created",
+              action: "Todo Deleted",
             },
           });
         } else if (args.operation === "updateByID") {
@@ -47,7 +47,7 @@ const Todo = {
               name: args.result.name,
               log: args.result.id,
               timestamp: new Date(),
-              action: "Todo Created",
+              action: "Todo Updated",
             },
           });
         }
