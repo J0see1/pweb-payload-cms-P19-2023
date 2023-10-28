@@ -3,7 +3,7 @@
   <div class="flex flex-col gap-3">
     <div class="flex flex-col gap-1">
       <label class="text-gray-700 font-semibold">Name</label>
-      <div class="border-2 py-1 border-gray-400 rounded-md">
+      <div class="border-2 py-1 border-gray-400 rounded-md p-2">
         <input v-model="name">
       </div>
     </div>

@@ -27,7 +27,7 @@ const Category = {
               action: "Category Created",
             },
           });
-        } else if (args.operation === "delete") {
+        } else if (args.operation === "deleteByID") {
           await payload.create({
             collection: "Logs",
             data: {
@@ -37,7 +37,7 @@ const Category = {
               action: "Category Deleted",
             },
           });
-        } else if (args.operation === "update") {
+        } else if (args.operation === "updateByID") {
           await payload.create({
             collection: "Logs",
             data: {

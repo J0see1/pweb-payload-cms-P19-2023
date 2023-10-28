@@ -8,7 +8,7 @@
         <th class="p-1 text-sm font-bold tracking-wide">Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-slate-50 ">
       <tr
         class="border-b"
         v-for="(task, id) in tasks"
@@ -24,7 +24,7 @@
           {{ task.Category.name }}
         </th>
         <th>
-          <div class="flex justify-center gap-4 items-center h-full w-full">
+          <div class="flex justify-center gap-4 items-center h-full w-full ">
             <router-link :to="{ name: 'edit', params: { id: task.id } }">
             <svg
               xmlns="http://www.w3.org/2000/svg"

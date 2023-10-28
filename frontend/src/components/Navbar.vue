@@ -6,11 +6,11 @@ import { RouterLink, RouterView } from "vue-router";
     <div class="logo">
       <a href="/"> JoCelLa </a>
     </div>
-    <div class="menu">
+    <div class="mx-6">
       <ul>
-        <li><RouterLink to="/">HOME</RouterLink></li>
-        <li><RouterLink to="/about">ABOUT</RouterLink></li>
-        <li><RouterLink to="404">CONTENT</RouterLink></li>
+        <li><RouterLink to="/">home</RouterLink></li>
+        <li><RouterLink to="/about">about</RouterLink></li>
+        <li><RouterLink to="404">content</RouterLink></li>
       </ul>
     </div>
   </div>
