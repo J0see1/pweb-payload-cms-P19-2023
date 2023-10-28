@@ -24,7 +24,7 @@ const Category = {
               name: args.result.name,
               log: args.result.id,
               timestamp: new Date(),
-              action: "Todo Created",
+              action: "Category Created",
             },
           });
         } else if (args.operation === "delete") {
@@ -34,7 +34,7 @@ const Category = {
               name: args.result.name,
               log: args.result.id,
               timestamp: new Date(),
-              action: "Todo Created",
+              action: "Category Deleted",
             },
           });
         } else if (args.operation === "update") {
@@ -44,7 +44,7 @@ const Category = {
               name: args.result.name,
               log: args.result.id,
               timestamp: new Date(),
-              action: "Todo Created",
+              action: "Category Updated",
             },
           });
         }
