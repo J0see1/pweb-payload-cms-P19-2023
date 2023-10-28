@@ -6,6 +6,11 @@ export const todoData = reactive({
     { id: 1, category: "502722108", name: "Gaby" },
     { id: 2, category: "502722135", name: "Jojo" },
   ],
+  categories: [
+    { category: "5027221" },
+    { category: "5027221" },
+    { category: "5027221" },
+  ],
   createTask(task) {
     this.tasks.push(task);
   },

@@ -24,12 +24,12 @@
           />
         </div>
         <div class="flex flex-col">
-          <label class="text-gray-700 font-semibold">category</label>
-          <input
-            v-model="inputNewCategory"
-            class="border rounded-md px-3 py-2 border-gray-400 focus:outline-none focus:border-blue-500"
-            
-          />
+          <select v-model="inputCategory" class="border-2 py-1 border-gray-400 rounded-md">
+              <option value="">Select a category</option>
+              <option v-for="category in todoData.categories" :value="category" :key="category">
+                {{ category }}
+              </option>
+          </select>
         </div>
       </div>
       <button

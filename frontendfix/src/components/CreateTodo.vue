@@ -1,6 +1,5 @@
 <script>
 import { todoData } from "../api/categoryServices";
-
 export default {
   emits: ["close-modal"],
   data() {
@@ -43,10 +42,12 @@ export default {
     </div>
     <div class="flex flex-col gap-1">
       <label class="text-gray-700 font-semibold">Category</label>
-      <input
-        v-model="inputCategory"
-        class="border-2 py-1 border-gray-400 rounded-md"
-      />
+      <select v-model="inputCategory" class="border-2 py-1 border-gray-400 rounded-md">
+        <option value="">Select a category</option>
+        <option v-for="category in todoData.categories" :value="category" :key="category">
+          {{ category }}
+        </option>
+      </select>
     </div>
   </div>
   <button
