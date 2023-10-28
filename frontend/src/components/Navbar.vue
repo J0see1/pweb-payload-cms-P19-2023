@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from "vue-router";
 </script>
 <template>
-  <section class="navbar">
+  <div class="navbar">
     <div class="logo">
       <a href="/"> JoCelLa </a>
     </div>
@@ -13,5 +13,5 @@ import { RouterLink, RouterView } from "vue-router";
         <li><RouterLink to="404">CONTENT</RouterLink></li>
       </ul>
     </div>
-  </section>
+  </div>
 </template>

@@ -1,46 +1,31 @@
-<script>
-import { userStore } from "../api/categoryServices.js";
-export default {
-  data() {
-    return {
-      userStore,
-    };
-  },
-};
-</script>
-
 <template>
   <table>
-    <thead class="bg-gray-100 border-b-2 border-gray-300">
+    <thead class="bg-purple-100 border-b-2 border-purple-300">
       <tr>
         <th class="p-1 text-sm font-bold tracking-wide">No.</th>
         <th class="p-3 text-sm font-bold tracking-wide">Name</th>
-        <th class="p-1 text-sm font-bold tracking-wide">NRP</th>
-        <th class="p-1 text-sm font-bold tracking-wide">Email</th>
+        <th class="p-1 text-sm font-bold tracking-wide">Category</th>
         <th class="p-1 text-sm font-bold tracking-wide">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr
         class="border-b"
-        v-for="(user, index) in userStore.users"
-        :key="user.id"
+        v-for="(task, id) in tasks"
+        :key="task.id"
       >
-        <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ index + 1 }}
+        <th class="p-3 text-sm text-purple-700 font-normal">
+          {{ id + 1 }}
         </th>
-        <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ user.name }}
+        <th class="p-3 text-sm text-purple-700 font-normal">
+          {{ task.name }}
         </th>
-        <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ user.nrp }}
-        </th>
-        <th class="p-3 text-sm text-gray-700 font-normal">
-          {{ user.email }}
+        <th class="p-3 text-sm text-purple-700 font-normal">
+          {{ task.Category.name }}
         </th>
         <th>
           <div class="flex justify-center gap-4 items-center h-full w-full">
-            <router-link :to="{ name: 'edit', params: { id: user.id } }">
+            <router-link :to="{ name: 'edit', params: { id: task.id } }">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1.2em"
@@ -53,7 +38,7 @@ export default {
             </svg>
             </router-link>
             <svg
-              @click="userStore.deleteUser(user.id)"
+              @click="deleteTask(task.id)"
               xmlns="http://www.w3.org/2000/svg"
               height="1.2em"
               viewBox="0 0 448 512"
@@ -69,3 +54,54 @@ export default {
     </tbody>
   </table>
 </template>
+
+<script>
+import qs from "qs";
+export default {
+  data() {
+    return {
+      tasks: [],
+    };
+  },
+  methods: {
+    async fetchTasks() {
+      await fetch('http://localhost:3100/api/Todo')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.docs);
+        this.tasks = data.docs;
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    },
+    async deleteTask(taskID) {
+      const stringifiedQuery = qs.stringify({
+        where: {
+          id: {
+            contains: taskID,
+          },
+        },
+      },{ addQueryPrefix: true });
+      try {
+        const req = await fetch(`http://localhost:3100/api/Todo/${stringifiedQuery}`, {
+          method: "DELETE", 
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        const data = await req.json()
+        if (data) {
+        window.alert('Task has been deleted successfully');
+        window.location.reload();
+      }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  created() {
+    this.fetchTasks();
+  },
+};
+</script>

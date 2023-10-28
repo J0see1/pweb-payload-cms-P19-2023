@@ -1,41 +1,77 @@
-<script>
-import { userStore } from "../api/categoryServices.js";
-import Modal from "./Modal.vue";
-import CreateUserForm from "./AddTodo.vue";
+<template>
+  <span class="text-gray-700 font-bold text-2xl">Create Task</span>
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-1">
+      <label class="text-gray-700 font-semibold">Name</label>
+      <div class="border-2 py-1 border-gray-400 rounded-md">
+        <input v-model="name">
+      </div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="text-gray-700 font-semibold">Category</label>
+      <select v-model="inputCategory" class="border-2 py-1 border-gray-400 rounded-md">
+        <option value="">Select a category</option>
+        <option v-for="category in categories" :value="category.id" :key="category">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <button
+    @click="createTask"
+    class="px-4 py-2 mt-1 bg-gray-700 w-fit h-fit text-gray-100 font-bold text-sm rounded-xl hover:scale-110 transition-all hover:ease-in-out hover:duration-300"
+  >
+    Submit
+  </button>
+</template>
 
+<script>
 export default {
-  components: {
-    Modal,
-    CreateUserForm,
-  },
+  emits: ["close-modal"],
   data() {
     return {
-      userStore,
-      isModal: false,
+      name: "",
+      inputCategory: "",
+      categories: [],
     };
   },
   methods: {
-    toggleModal() {
-      this.isModal = !this.isModal;
+    async createTask() {
+        try {
+        const req = await fetch('http://localhost:3100/api/Todo', {
+            method: "POST", 
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: this.name,
+                Category: this.inputCategory,
+            }),
+        })
+        const data = await req.json()
+            if (data) {
+            window.alert('Task has been created successfully');
+            window.location.reload();
+            }
+        } catch (err) {
+        console.log(err)
+        }
+      },
+      async getCategories() {
+        await fetch('http://localhost:3100/api/Category')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.docs);
+            this.categories = data.docs;
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+      }
     },
-  },
+    mounted() {
+        this.getCategories()
+      document.title = "Create Task"; 
+    }
 };
 </script>
-
-<template>
-  <span class="font-bold text-4xl text-gray-700">Users</span>
-  <span class="font-base text-sm text-gray-400"
-    >{{ userStore.users.length }} users</span
-  >
-  <div class="w-full flex justify-end">
-    <button
-      @click="toggleModal"
-      class="px-6 py-2 bg-gray-700 text-gray-200 font-bold mb-2 w-fit border-[1.5px] hover:scale-110 transition-all hover:ease-in-out hover:duration-300 rounded-xl text-sm"
-    >
-      Create
-    </button>
-    <Modal @close-modal="toggleModal" :isModal="isModal">
-      <CreateUserForm @close-modal="toggleModal" />
-    </Modal>
-  </div>
-</template>
